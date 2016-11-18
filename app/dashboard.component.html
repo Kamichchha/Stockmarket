@@ -1,0 +1,114 @@
+<div class="row">
+    <div class="col-xs-2">
+        <label for="stockRevenue" >Revenue:</label>
+    </div>
+    <div class="col-xs-3">
+        <input  type="text" name="stockRevenue" [(ngModel)]="stock.revenue"/>
+    </div>
+    <div class="col-xs-2">
+        <label for="forecastPeriod" >Forecast:</label>
+    </div>
+    <div class="col-xs-4">
+        <select name="forecastPeriod" [(ngModel)]="stock.forecastPeriod">
+            <option *ngFor="let value of forecastYears" [value]="value">{{value}}
+            </option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2">
+        <label for="workingCapital" style="width:200px;">Working Capital:</label>
+    </div>
+    <div class="col-xs-3">
+        <input type="text" name="workingCapital" [(ngModel)]="stock.wcapital"/>
+    </div>
+    <div class="col-xs-3">
+        <label for="lblSharesOutstanding" style="width:200px;">Shares Outstanding:</label>
+    </div>
+    <div class="col-xs-4">
+        <input type="text" [(ngModel)]="this.stock.sharesOutstanding"/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2">
+        <label for="lblDiscountRate" style="width:200px;">Discount Rate</label>
+    </div>
+    <div class="col-xs-3">
+        <input type="text" [(ngModel)]="this.stock.discountRate"/>
+    </div>
+    <div class="col-xs-3">
+        <label for="lblcashFlowGrowthRate" style="width:200px;">Cash-flow growth Rate:</label>
+    </div>
+    <div class="col-xs-4">
+        <input type="text" [(ngModel)]="this.stock.cashFlowGrowthRate"/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2">
+        <label for="lblTerminalValue" style="width:200px;">Terminal Value</label>
+    </div>
+    <div class="col-xs-3">
+        <label for="terminalValue" style="width:200px;">{{this.stock.terminalValue}}</label>
+    </div>
+    <div class="col-xs-3">
+        <label for="lblTerminalValue" style="width:200px;">Enterprise Value:</label>
+    </div>
+    <div class="col-xs-4">
+        <label for="terminalValue" style="width:200px;">{{this.stock.enterpriseValue}}</label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+        <label for="lblDebt" style="width:200px;">Debt</label>
+    </div>
+    <div class="col-xs-3">
+        <input type="text" [(ngModel)]="this.stock.debt"/>
+    </div>
+    <div class="col-xs-3">
+        <label for="lblIntrinsicValue" style="width:200px;">Intrinsic Value:</label>
+    </div>
+    <div class="col-xs-4">
+        <label for="intrinsicValue" style="width:200px;">{{this.stock.intrinsicValue}}</label>        
+    </div>    
+</div>
+
+<div class="row">
+    <div class="col-xs-2">Year from now</div>
+    <div class="col-xs-2">Growth Rate</div>
+    <div class="col-xs-2">Revenue Forecast</div>
+    <div class="col-xs-2">Operating Margin%</div>
+    <div class="col-xs-2">Tax %</div>
+    <div class="col-xs-2">Investment %</div>
+</div>
+
+<div class="row" *ngFor="let year of forecastYears.slice(0,stock.forecastPeriod)">
+    <div class="col-xs-2"><label  style="width:150px;">Year: {{year}}</label></div>
+    <div class="col-xs-2"><input  type="text" name="growthRate" [(ngModel)]="growthRate[year]" size="10" /></div>
+    <div class="col-xs-2">{{revenueInYears[year]}}</div>
+    <div class="col-xs-2"><input type="text" name="marginPercent" [(ngModel)]="oprMarginPer[year]" size="5" /></div>
+    <div class="col-xs-2"><input type="text" name="taxRate" [(ngModel)]="taxRate[year]" size="5" /></div>
+    <div class="col-xs-2"><input type="text" name="netInvestment" [(ngModel)]="netInvestmentPer[year]" size="5" /></div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2">Year from now</div>
+    <div class="col-xs-2">Operating Cost</div>
+    <div class="col-xs-2">Taxes</div>
+    <div class="col-xs-2">Net Investment</div>
+    <div class="col-xs-2">Working Capital - Change</div>
+    <div class="col-xs-2">Free Cash Flow</div>    
+</div>
+
+<div class="row" *ngFor="let year of forecastYears.slice(0,stock.forecastPeriod)">
+    <div class="col-xs-2"><label  style="width:150px;">Year: {{year}}</label></div>
+    <div class="col-xs-2"><label  style="width:150px;">{{opCostInYears[year]}}</label></div>
+    <div class="col-xs-2"><label  style="width:150px;">{{taxes[year]}}</label></div>
+    <div class="col-xs-2"><label  style="width:150px;">{{netInvestment[year]}}</label></div>
+    <div class="col-xs-2"><label  style="width:150px;">{{workCapitalInYears[year]-workCapitalInYears[year-1]}}</label></div>
+    <div class="col-xs-2"><label  style="width:150px;">{{cashflow[year]}}</label></div>
+</div>
+
+
